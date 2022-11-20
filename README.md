@@ -109,3 +109,72 @@ https://cloud.yandex.ru/docs/compute/quickstart/quick-create-linux
 testapp_IP = 158.160.43.108
 testapp_port = 9292
 ```
+
+# Использование Packer для создания кастомных образов
+Packer позволяет создавать образы дисков виртуальных машин с заданными в конфигурационном файле параметрами.
+
+Файлы для использования Packer хранятся в каталоге `packer`
+
+## Подготовка для билда
+Для использования packer требуется подготовить:
+ - сервисный аккаунт
+ - файл шаблона
+ - файл с параметрами
+
+#### Сервисный аккаунт
+
+Получите ваш `folder-id` - ID каталога в Yandex.Cloud:
+```
+$ yc config list
+```
+Создайте сервисный аккаунт:
+```
+$ SVC_ACCT="<придумайте имя>"
+$ FOLDER_ID="<замените на собственный>"
+$ yc iam service-account create --name $SVC_ACCT --folder-id $FOLDER_ID
+```
+
+Выдайте права аккаунту:
+```
+$ ACCT_ID=$(yc iam service-account get $SVC_ACCT | \
+grep ^id | \
+awk '{print $2}')
+$ yc resource-manager folder add-access-binding --id $FOLDER_ID \
+--role editor \
+--service-account-id $ACCT_ID
+```
+Создайте IAM key и экспортируйте его в файл. Помните, что
+файлы, содержащие секреты, необходимо хранить за пределами
+вашего репозитория.
+```
+$ yc iam key create --service-account-id $ACCT_ID --output <вставьте свой путь>/key.json
+```
+#### Шаблон
+Внутри директории packer распологается файл `ubuntu16.json`. Это Packer шаблон, содержащий описание образа VM,
+который мы хотим создать. Для нашего приложения мы
+соберем образ VM с предустановленными Ruby и MongoDB,так
+называемый baked-образ.
+
+В каталоге `scripts`, размещаются скрипты которые будут использованы в секции `provisioners`. Эти скрипты установят Ruby и MongoDB.
+
+#### Параметры
+Для придания гибкости билду используется файл параметров `variables.json`, пример такого файла в `variables.json.examples`.
+В файле можно вынести все параметры которые отличаются в зависимости от зоны, организации сети и сервисных аккаунтов.
+
+## Билд через PAcker
+После настройки файлов и параметров билда можно проверить корректность с помощью команды:
+```
+packer validate -var-file=variables.json ./ubuntu16.json
+```
+Если все в порядке, можно приступать к билду:
+```
+packer build -var-file=variables.json ubuntu16.json
+```
+
+Список кастомных образов для ВМ можно посмотреть на странице:
+`https://console.cloud.yandex.ru/folders/<id каталога>/compute/images`
+
+Или с помощью утилиты `yc`:
+```
+yc compute image list
+```
