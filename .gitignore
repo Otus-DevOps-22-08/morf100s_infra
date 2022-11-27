@@ -1,2 +1,2 @@
-service-account-id-packer-iam_key.json
-variables.json
+packer/service-account-id-packer-iam_key.json
+packer/variables.json
