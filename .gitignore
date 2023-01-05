@@ -1,2 +1,9 @@
 packer/service-account-id-packer-iam_key.json_real
 packer/variables.json_real
+*.tfstate
+*.tfstate.*.backup
+*.tfstate.backup
+*.tfvars
+.terraform/
+terraform/key.json
+.terraform.*
