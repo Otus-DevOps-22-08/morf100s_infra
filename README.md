@@ -275,19 +275,17 @@ terraform apply -auto-approve
 ## Подготовка
 Для выполнения ansible playbook-ов, требуется развернутая инфраструктура, с помощью terraform файлов `prod` или `stage` зон.
 В каталоге ansible находятся 4 типа файлов инвентори:
- - inventory.example - пример INI файла
- - inventory.yml.example - пример YAML файла
- - inventory.json.example - пример статического JSON файла
+ - inventory - пример INI файла
+ - inventory.yml - пример YAML файла
+ - inventory.json - пример статического JSON файла
  - inventory.sh - скрипт динамического JSON файла
 
-Для использования файлов примеров (*.example), необходимо 
+Для использования файлов примеров, необходимо 
 1. Получить IP адреса серверов, например Outputs в конце terraform развертывания:
 ```
-...
 Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 
 Outputs:
-...
 ```
 2. задать имя файлу инвентори, прописать это имя в директиву `inventory` в файле конфигурации `ansible.cfg`. Например, для файла формата INI:
 ```

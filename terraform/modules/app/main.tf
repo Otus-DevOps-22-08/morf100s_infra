@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     yandex = {
-      source  = "yandex-cloud/yandex"
+      source = "yandex-cloud/yandex"
       version = "0.84.0"
     }
   }
@@ -27,7 +27,7 @@ resource "yandex_compute_instance" "app" {
 
   network_interface {
 #    subnet_id = yandex_vpc_subnet.app-subnet.id
-    subnet_id       = var.subnet_id
+    subnet_id = var.subnet_id
     nat       = true
   }
 

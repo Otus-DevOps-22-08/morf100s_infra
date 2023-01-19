@@ -6,6 +6,5 @@ apt-get update
 sudo apt-get update
 sleep 15
 sudo apt install -y mongodb-org
-sudo sed '/bindIp/d' -i /etc/mongod.conf
 sudo systemctl start mongod
 sudo systemctl enable mongod
