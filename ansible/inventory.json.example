@@ -1,0 +1,13 @@
+{
+    "all": {
+        "children": ["appserver", "dbserver"]
+    },
+    "app": {
+        "children": ["appserver"]
+    },
+    "db": {
+        "children": ["appserver"]
+    },
+    "appserver": ["<IP адрес>"],
+    "dbserver": ["<IP адрес>"]
+}

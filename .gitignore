@@ -8,3 +8,5 @@ packer/variables.json
 *key.json
 backend.tf
 .terraform.*
+LICENSE
+*.retry
