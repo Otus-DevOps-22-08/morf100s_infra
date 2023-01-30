@@ -1,7 +1,0 @@
-{
-    "folder_id": "6eVWfQYRZ0fpU3T8jIVCLnd0",
-    "service_account_key_file": "service-account-id-packer-iam_key.json",
-    "source_image_family": "ubuntu-1604-lts",
-    "subnet_id": "G6AnmrgXixXDS3GtZh8OWuep",
-    "zone": "ru-central1-a"
-}
