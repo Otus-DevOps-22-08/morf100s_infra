@@ -11,3 +11,5 @@ backend.tf
 LICENSE
 *.retry
 *_old
+jdauphant.nginx
+vault.key

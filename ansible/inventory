@@ -1,5 +1,0 @@
-[app] 
-appserver ansible_host=<IP адрес>
-
-[db]
-dbserver ansible_host=<IP адрес>

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+eval $(grep TERRAFORM_STAGE= $(dirname "$(realpath $0)")/../../inventory.sh)
+
+DB_HOST=$(curl -s $TERRAFORM_STAGE | jq -r .outputs.internal_ip_address_db.value)
+
+sed 's/db_host.*/db_host: '${DB_HOST}'/g' -i $(dirname "$(realpath $0)")/group_vars/app
+
+$(dirname "$(realpath $0)")/../../inventory.sh
