@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "hostvars": {
+      "appserver": {
+        "ansible_ssh_host": "<IP адрес>"
+      },
+      "dbserver": {
+        "ansible_ssh_host": "<IP адрес>"
+      }
+    }
+  },
+  "all": {
+    "children": [
+      "app",
+      "db"
+    ],
+    "hosts": []
+  },
+  "app": {
+    "children": [],
+    "hosts": [
+      "appserver"
+    ]
+  },
+  "db": {
+    "children": [],
+    "hosts": [
+      "dbserver"
+    ]
+  }
+}

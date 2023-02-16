@@ -1,0 +1,10 @@
+---
+- import_playbook: db.yml
+- import_playbook: app.yml
+- import_playbook: deploy.yml
+- name: Install Nginx
+  hosts: app
+  become: true
+  roles:
+    - role: jdauphant.nginx
+- import_playbook: users.yml
