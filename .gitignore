@@ -22,3 +22,4 @@ vault.key
 .pytest_cache
 molecule
 .yamllint
+!docker-1.log

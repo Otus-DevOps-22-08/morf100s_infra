@@ -362,3 +362,10 @@ ansible-playbook -i environments/stage/inventory playbooks/site.yml
 
 Поскольку инвентори динамический, он пердоставит для ansible реквизиты доступа и наполнии файлы переменных их значениями.
 
+# Docker контейнеры. Docker под капотом
+
+В этом ДЗ знакомимся с docker и пробуем docker-machine
+
+Сделаное:
+ - повторил команды для управления docker
+ - изменил Dockerfile, с учетом зависимости gem
